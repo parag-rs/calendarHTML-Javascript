@@ -3,7 +3,7 @@
 The program uses Date() function to build a simple calendar with Pure JavaScript and HTML. 
 Here's the final implementation of it - http://iamnitinpatel.com/projects/calendar
 
-![alt html javascript calendar](https://gifyu.com/image/gmwK)
+![alt html javascript calendar](https://s8.gifyu.com/images/CalPreview-31082020.png)
 
 **Explanation-** When the program is started, the function *showCalendar()* is with arguments *currentMonth* and *currentYear*. 
 This function populates the table with dates at the correct places. 
