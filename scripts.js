@@ -9,14 +9,55 @@ let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
 let monthAndYear = document.getElementById("monthAndYear");
 showCalendar(currentMonth, currentYear);
 
+document.addEventListener('keyup', function(e) {
+  if (e.which == 37) {
+    document.getElementById("previous").click();
+  } else if (e.which == 38) {
+    jumpYear(-1);
+  } else if (e.which == 39) {
+    document.getElementById("next").click();
+  } else if (e.which == 40) {
+    jumpYear(1);
+  } else if (e.which == 84) { //keyboard shortcut T
+    document.getElementById("jumpToday").click();
+  }
+});
+
+function jumpToday() {
+
+    currentMonth = today.getMonth();
+    currentYear = today.getFullYear();
+    selectYear.value = currentYear;
+    selectMonth.value = currentMonth;
+    showCalendar(currentMonth, currentYear);
+}
+
+function jumpYear(jumpSteps) {
+  let tmpCurrentYear = parseInt(selectYear.value) + jumpSteps;
+  if(tmpCurrentYear === 2031 || tmpCurrentYear === 1989) {
+    return;
+  }
+  currentYear = tmpCurrentYear;
+  selectYear.value = currentYear;
+  showCalendar(currentMonth, currentYear);
+}
+
 
 function next() {
+    let tmpCurrentYear = parseInt(selectYear.value) + 1;
+    if(tmpCurrentYear === 2031 && currentMonth === 11) {
+      return;
+    }
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
     currentMonth = (currentMonth + 1) % 12;
     showCalendar(currentMonth, currentYear);
 }
 
 function previous() {
+    let tmpCurrentYear = parseInt(selectYear.value) - 1;
+    if(tmpCurrentYear === 1989 && currentMonth === 0) {
+      return;
+    }
     currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
     currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
     showCalendar(currentMonth, currentYear);
